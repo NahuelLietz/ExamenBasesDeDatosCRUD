@@ -17,6 +17,7 @@ Para ejecutar este proyecto, necesitás tener instalado:
    git clone https://github.com/NahuelLietz/ExamenBasesDeDatosCRUD.git
 
 2. Instalar bibliotecas
+ ```bash
     npm install
 
 3. Uso:
