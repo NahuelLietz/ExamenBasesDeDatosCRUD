@@ -20,16 +20,7 @@ Para ejecutar este proyecto, necesitás tener instalado:
     npm install
 
 3. Uso:
-```bash
-    Crear un libro:
-    node index.ts crear <Nombre> <Autor> <Precio> <Stock>
-    Mostrar todos los libros:
-    node index.ts leer <ID>
-    Actualizar un libro:
-    node index.ts actualizar  <ID> <Nombre> <Autor> <Precio> <Stock>
-    Eliminar un libro por ID:
-    node index.ts eliminar <ID>
-    ## Uso
+
 
 **Crear un libro:**
 ```bash
