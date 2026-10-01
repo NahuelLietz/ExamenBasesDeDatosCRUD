@@ -1,0 +1,24 @@
+{
+  "name": "examenbasesdedatoscrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+      "build": "tsc",
+      "start": "node index.js",
+      "dev": "npx tsx index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ECMAScript",
+  "type": "module",
+  "dependencies": {
+    "mongodb": "^7.7.0"
+    
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
