@@ -20,8 +20,6 @@ Para ejecutar este proyecto, necesitás tener instalado:
  ```bash
     npm install
 
-3. Uso:
-
 
 **Crear un libro:**
 ```bash
