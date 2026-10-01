@@ -2,7 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 
 const uriDB = 'mongodb://127.0.0.1:27017';
 const connection = new MongoClient(uriDB);
-const db = 'biblioteca';
+const dbName = 'biblioteca';
 
 interface Libro {
     titulo: string;
@@ -16,8 +16,8 @@ async function main() {
         await connection.connect();
         console.log('Conectado a la base de datos');
 
-        const db = connection.db(uriDB);
-        const collection = db.collection<Libro>('libros');  
+        const database = connection.db(dbName);
+        const collection = database.collection<Libro>('libros');  
         
         
         const argumentos = process.argv.slice(2);
@@ -38,30 +38,29 @@ async function main() {
                     console.error("Error: Faltan argumentos o son inválidos. Uso: create <titulo> <autor> <precio> <stock>");
                     break;
                 }
-                const database = connection.db(uriDB);
+                const database = connection.db(dbName);
                 const collection = database.collection<Libro>('libros');
 
-                // 2. Insertar el documento en MongoDB
+               
                 const resultado = await collection.insertOne({ titulo, autor, precio, stock });
                 console.log(`Libro creado con éxito con el ID: ${resultado.insertedId}`);
                 break;
             } 
             case 'leer': {
-                const libros = await connection.db(uriDB).collection<Libro>('libros').find().toArray();
+                const libros = await connection.db(dbName).collection<Libro>('libros').find().toArray();
                 console.log('Libros en la base de datos:');
-                libros.forEach((libro) => {
-                    console.log(`ID: ${libro._id}, Título: ${libro.titulo}, Autor: ${libro.autor}, Precio: ${libro.precio}, Stock: ${libro.stock}`);
-                });
+
+                console.log(libros);
                 break; 
             }
             case 'actualizar': {
-                const id = argumentos[1];
-                const titulo = argumentos[2];
-                const autor = argumentos[3];
+                const id = argumentos[1] ;
+                const titulo = argumentos[2] as string;
+                const autor = argumentos[3] as string;
                 const precio = parseFloat(argumentos[4] ?? "0");
                 const stock = parseInt(argumentos[5] ?? "0", 10);
 
-                if (!id || !ObjectId.isValid(id) || !titulo || !autor || isNaN(precio) || isNaN(stock)) {
+                if (!id || !ObjectId.isValid(id) || !titulo || !autor || isNaN(precio) || isNaN(stock) ) {
                     console.error("Error: Argumentos inválidos. Uso: update <ID> <titulo> <autor> <precio> <stock>");
                     break;
                 }
